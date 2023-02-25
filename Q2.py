@@ -1,5 +1,5 @@
-n = input()
 # 평균 구하기
+n = input()
 mylist = list(map(int, input().split()))
 mymax = max(mylist)
 sum = sum(mylist)
