@@ -1,6 +1,13 @@
 # 평균 구하기
-n = input()
-mylist = list(map(int, input().split()))
-mymax = max(mylist)
-sum = sum(mylist)
-print(sum * 100 / mymax / int(n))
+
+N = int(input())
+scores = list(map(int, input().split()))
+maxValue = max(scores)
+sumValue = 0
+
+for i in range(N):
+  scores[i] = scores[i]/maxValue*100
+  sumValue += scores[i]
+
+print(sumValue / N)
+
