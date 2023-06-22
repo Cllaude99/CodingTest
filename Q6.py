@@ -1,20 +1,21 @@
 ﻿# 투 포인터
-n = int(input())
-count = 0
-start_index = 1
-end_index = 1
+
+N = int(input())
+
+count = 1
+start = end = 1
 sum = 1
 
-while start_index <= end_index: 
-    if sum == n:
+while end != N:
+    if sum == N:
         count += 1
-        end_index += 1
-        sum += end_index
-    elif sum < n:
-        end_index += 1
-        sum += end_index
+        end += 1
+        sum += end
+    elif sum < N:
+        end += 1
+        sum += end
     else:
-        sum -= start_index
-        start_index += 1
+        sum -= start
+        start += 1
 
 print(count)
