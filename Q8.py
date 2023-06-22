@@ -1,26 +1,25 @@
-# ÁÁÀº ¼ö ±¸ÇÏ±â
-import sys
-input = sys.stdin.readline
+# ì¢‹ì€ ìˆ˜ êµ¬í•˜ê¸°
+
 N = int(input())
-Result = 0
-A = list(map(int, input().split()))
-A.sort()
+numList = list(map(int, input().split()))
+numList.sort()
+count = 0
 
-for k in range(N):
-    find = A[k]
-    i = 0
-    j = N - 1
-    while i < j:
-        if A[i] + A[j] == find:
-            if i != k and j != k:
-                Result += 1
-            elif i == k:
-                i += 1
-            elif j == k:
-                j -= 1
-        elif A[i] + A[j] < find:
-            i += 1
-        else: 
-            j -= 1
+for i in range(N):
+    start = 0
+    end = N - 1
+    while start < end:
+        if numList[start] + numList[end] == numList[i]:
+            if start != i and end != i:
+                count += 1
+                break
+            elif start == i:
+                start += 1
+            else:
+                end -= 1
+        elif numList[start] + numList[end] < numList[i]:
+            start += 1
+        else:
+            end -= 1
 
-print(Result)
+print(count)
