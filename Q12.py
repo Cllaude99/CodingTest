@@ -1,14 +1,22 @@
 # 오큰수 구하기
+import sys
+input = sys.stdin.readline
 
 N = int(input())
-values = list(map(int, input().split()))
-stack = []
-Result = [-1] * N
+numList = list(map(int, input().split()))
+stk = []
+Result = []
 
-for i in range(N):
-    while stack and values[stack[-1]] < values[i]:
-      Result[stack.pop()] = values[i]
-    stack.append(i)
+for i in range(N-1, -1, -1):
+    while stk and numList[i] >= stk[-1]:
+        stk.pop()
 
-for i in range(N):
-   print(Result[i], end=' ')
+    if len(stk) == 0:
+        Result.append(-1)
+    else:
+        Result.append(stk[-1])
+
+    stk.append(numList[i])
+
+for value in Result[::-1]:
+    print(value, end=' ')
