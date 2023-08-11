@@ -26,5 +26,5 @@ def DFS(idx, p):
 
 DFS(1, 1)
 
-for v in range(2, N + 1):
-    print(result[v])
+for v in result[2: N + 1]:
+    print(v)
