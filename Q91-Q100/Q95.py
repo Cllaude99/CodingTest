@@ -1,33 +1,31 @@
 # 외판원 순회
 import sys
-sys.setrecursionlimit(10**6)
-
+input = sys.stdin.readline
 N = int(input())
-# costs[i][j] == i에서 j까지 가는데 비용
-costs = [[0 for j in range(N)] for i in range(N)]
-# arr 인접리스트를 의미함
-arr = [[] for i in range(N)]
-visited = [False] * (N + 1)
-count = 0
-minValue = sys.maxsize
+W = []
 
 for i in range(N):
-    costs[i] = list(map(int, input().split()))
+  W.append([])
+  W[i] = list(map(int, input().split()))
 
-for i in range(N):
-    for j in range(N):
-        if costs[i][j]:
-            arr[i].append(j)
+D = [[0 for j in range(1 << 16)] for i in range(16)]
 
-for i in range(N):
-    for j in range(N):
-        if costs[i][j] != 0:
-            for k in range(N):
-                if costs[i][k] != 0 and costs[k][j] != 0:
-                    costs[i][j] = min(costs[i][j], costs[i][k] + costs[k][j])
+def tsp(c, v):
+  if v == (1 << N) - 1:
+    if W[c][0] == 0:
+      return float('inf')
+    else:
+      return W[c][0]
+  if D[c][v] != 0:
+    return D[c][v]  
+  min_val = float('inf')
+  for i in range(0, N):
+    if(v & (1 << i)) == 0 and W[c][i] != 0:
+      min_val = min(min_val, tsp(i, (v | (1 << i))) + W[c][i])
+  D[c][v] = min_val
+  return D[c][v]
 
-
-def DFS(start, end, costSum):
-    global count
-    costSum = costSum + costs[start][end]
-    count += 1
+print(tsp(0,1))
+  
+  
+        
