@@ -1,36 +1,24 @@
 #  가장 긴 증가하는 부분수열
 
+import sys
 N = int(input())
-seq = list(map(int,input().split()))
-DP = [0 for i in range(1001)]
-arr = []
-maxValue = 0
+seq = list(map(int, input().split()))
+DP = [sys.maxsize for i in range(1001)]
 
-DP[seq[0]] = 1
 maxValue = 1
-arr.append(seq[0])
+DP[1] = seq[0]
 
-for num in seq[1:]:
-  if DP[num] == 0 and arr:    
-    if max(arr) <= num:
-        DP[num] = DP[max(arr)] + 1
-        if max(arr) != num:
-          arr.append(num)
-    else:
-       check = False
-       for value in arr[-1:-1:-1]:
-         if num > value:
-           check = True
-           DP[num] = DP[value] + 1
-           arr.append(num)
-           break
-       if not check:
-         arr.append(num)
-         DP[num] = 1        
-    arr.sort()
-        
-print(DP[0])
-print(DP[30])
-print(DP[50])
-print(DP[70])
-print(DP[60])
+for value in seq[1:]:
+    check = False
+    for i in range(maxValue, 0, -1):
+        if DP[i] < value:
+            if i == maxValue:
+                maxValue += 1
+                DP[maxValue] = min(DP[maxValue], value)
+            else:
+                DP[i + 1] = min(DP[i + 1], value)
+            check = True
+            break
+    if not check:
+        DP[1] = min(DP[1], value)
+print(maxValue)
