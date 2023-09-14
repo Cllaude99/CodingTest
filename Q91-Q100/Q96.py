@@ -18,16 +18,19 @@ for num in seq[1:]:
           arr.append(num)
     else:
        check = False
-       for value in range(len(arr) - 2, -1, -1):
-         if num > arr[value]:
+       for value in arr[-1:-1:-1]:
+         if num > value:
            check = True
-           DP[num] = DP[arr[value]] + 1
+           DP[num] = DP[value] + 1
            arr.append(num)
            break
        if not check:
          arr.append(num)
-         DP[num] = 1    
-    maxValue = max(maxValue, DP[num])
+         DP[num] = 1        
     arr.sort()
         
-print(maxValue)
+print(DP[0])
+print(DP[30])
+print(DP[50])
+print(DP[70])
+print(DP[60])
