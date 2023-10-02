@@ -2,12 +2,9 @@
 
 N = int(input())
 scores = list(map(int, input().split()))
-maxValue = max(scores)
-sumValue = 0
+maxScore = max(scores)
 
 for i in range(N):
-  scores[i] = scores[i]/maxValue*100
-  sumValue += scores[i]
+    scores[i] = scores[i] / maxScore * 100
 
-print(sumValue / N)
-
+print(sum(scores) / N)
