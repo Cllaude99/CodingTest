@@ -2,20 +2,21 @@
 
 N = int(input())
 
-count = 1
 start = end = 1
-sum = 1
+sumValue = 0
+count = 0
 
-while end != N:
-    if sum == N:
+while start <= N:
+    if sumValue == N:
         count += 1
+        sumValue += end
         end += 1
-        sum += end
-    elif sum < N:
+    elif sumValue < N:
+        sumValue += end
         end += 1
-        sum += end
     else:
-        sum -= start
+        sumValue -= start
         start += 1
+
 
 print(count)
