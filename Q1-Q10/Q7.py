@@ -5,20 +5,22 @@ input = sys.stdin.readline
 
 N = int(input())
 M = int(input())
-A = list(map(int, input().split()))
-A.sort()
-count = 0
-i = 0
-j = N-1
+arr = list(map(int, input().split()))
+arr.sort()
 
-while i < j:
-    if A[i] + A[j] < M:
-        i += 1
-    elif A[i] + A[j] > M:
-        j -= 1
-    else:
+start = 0
+end = N - 1
+count = 0
+
+while start < end:
+    value = arr[start] + arr[end]
+    if value == M:
         count += 1
-        i += 1
-        j -= 1
+        start += 1
+        end -= 1
+    elif value < M:
+        start += 1
+    else:
+        end -= 1
 
 print(count)
