@@ -3,72 +3,56 @@
 import sys
 input = sys.stdin.readline
 
-checkList = [0]*4
-myList = [0]*4
-checkSecret = 0
-
-# 함수정의
-
-
-def myadd(c):  # 새로 들어온 문자를 처리하는 함수
-    global checkList, myList, checkSecret
-    if c == 'A':
-        myList[0] += 1
-        if myList[0] == checkList[0]:
-            checkSecret += 1
-    elif c == 'C':
-        myList[1] += 1
-        if myList[1] == checkList[1]:
-            checkSecret += 1
-    elif c == 'G':
-        myList[2] += 1
-        if myList[2] == checkList[2]:
-            checkSecret += 1
-    elif c == 'T':
-        myList[3] += 1
-        if myList[3] == checkList[3]:
-            checkSecret += 1
-
-
-def myremove(c):  # 제거되는 문자를 처리하는 함수
-    global checkList, myList, checkSecret
-    if c == 'A':
-        if myList[0] == checkList[0]:
-            checkSecret -= 1
-        myList[0] -= 1
-    elif c == 'C':
-        if myList[1] == checkList[1]:
-            checkSecret -= 1
-        myList[1] -= 1
-    elif c == 'G':
-        if myList[2] == checkList[2]:
-            checkSecret -= 1
-        myList[2] -= 1
-    elif c == 'T':
-        if myList[3] == checkList[3]:
-            checkSecret -= 1
-        myList[3] -= 1
-
-
 S, P = map(int, input().split())
-Result = 0
-A = list(input())
-checkList = list(map(int, input().split()))
+DNA = input()
+leastNum = list(map(int, input().split()))
+arr = [0,0,0,0]
+count = 0
 
-for i in range(4):
-    if checkList[i] == 0:
-        checkSecret += 1
+def add(letter):
+  global arr
+  if letter == 'A':
+    arr[0] += 1
+  elif letter == 'C':
+    arr[1] += 1
+  elif letter == 'G':
+    arr[2] += 1
+  elif letter == 'T':
+    arr[3] += 1
 
-for i in range(P):  # 초기 P 부분 문자열 처리 부분
-    myadd(A[i])
-if checkSecret == 4:
-    Result += 1
+def sub(letter):
+    global arr
+    if letter == 'A' and arr[0] > 0:
+        arr[0] -= 1
+    elif letter == 'C' and arr[1] > 0:
+        arr[1] -= 1
+    elif letter == 'G' and arr[2] > 0:
+        arr[2] -= 1
+    elif letter == 'T' and arr[3] > 0:
+        arr[3] -= 1
 
-for i in range(P, S):
-    j = i-P
-    myadd(A[i])
-    myremove(A[j])
-    if checkSecret == 4:
-        Result += 1
+for i in range(P):
+  add(DNA[i])
 
-print(Result)
+def check():
+  for i in range(4):
+    if leastNum[i] > arr[i]:
+      return False
+  return True
+
+if check():
+   count += 1
+
+for i in range(S-P):
+  start = i
+  end = i + P
+  sub(DNA[i])
+  add(DNA[i + P])
+  if check():
+     count += 1
+
+print(count)
+
+
+
+  
