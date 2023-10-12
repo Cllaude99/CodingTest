@@ -1,4 +1,4 @@
-# 최솟값 찾기
+# 최솟값 찾기1
 
 from collections import deque
 import sys
