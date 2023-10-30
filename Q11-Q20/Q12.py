@@ -1,22 +1,14 @@
-# 오큰수 구하기
-import sys
-input = sys.stdin.readline
+# 오큰수 17298
 
 N = int(input())
-numList = list(map(int, input().split()))
+arr = list(map(int, input().split()))
 stk = []
-Result = []
+result = [-1] * N
 
-for i in range(N-1, -1, -1):
-    while stk and numList[i] >= stk[-1]:
-        stk.pop()
+for i in range(N):
+  while stk and arr[stk[-1]] < arr[i]:
+    result[stk.pop()] = arr[i]
+  stk.append(i)
 
-    if len(stk) == 0:
-        Result.append(-1)
-    else:
-        Result.append(stk[-1])
-
-    stk.append(numList[i])
-
-for value in Result[::-1]:
-    print(value, end=' ')
+for value in result:
+  print(value, end=' ')
