@@ -2,14 +2,14 @@
 
 from collections import deque
 
+queue = deque()
 N = int(input())
-deq = deque()
 
-for i in range(1, N+1):
-    deq.append(i)
+for num in range(1, N + 1):
+  queue.append(num)
 
-while len(deq) != 1:
-    deq.popleft()
-    deq.append(deq.popleft())
-
-print(deq[0])
+while len(queue) > 1:
+  queue.popleft()
+  queue.append(queue.popleft())
+  
+print(queue.popleft())
