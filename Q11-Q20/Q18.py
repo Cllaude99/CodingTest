@@ -1,15 +1,17 @@
-# ATM
+# ATM (11399)
 
 import sys
 input = sys.stdin.readline
 
 N = int(input())
 arr = list(map(int, input().split()))
-sumArr = [0]*(N+1)
-
 arr.sort()
+total = 0
 
-for i in range(1, N + 1):
-    sumArr[i] = sumArr[i-1] + arr[i - 1]
+for i in range(N):
+    total += sum(list(arr[0:i+1]))    
 
-print(sum(sumArr))
+print(total)
+
+
+
