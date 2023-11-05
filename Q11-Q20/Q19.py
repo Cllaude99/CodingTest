@@ -3,9 +3,8 @@
 import sys
 input = sys.stdin.readline
 
-N, index = map(int, input().split())
+N, K = map(int, input().split())
 arr = list(map(int, input().split()))
-
 arr.sort()
 
-print(arr[index - 1])
+print(arr[K - 1])
