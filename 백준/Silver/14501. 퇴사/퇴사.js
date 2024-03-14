@@ -4,19 +4,18 @@ const input = fs.readFileSync(filePath).toString().trim().split('\n');
 
 const N = Number(input.shift());
 
-const arr = new Array(N + 1);
-const temp = new Array(N + 2).fill(0);
-input.forEach((schedule, index) => {
-  const [day, cost] = schedule.split(' ').map(Number);
-  arr[index + 1] = [day, cost, index + 1];
+const times = new Array(N + 1);
+const D = new Array(N + 2).fill(0);
+
+input.forEach((element, idx) => {
+  times[idx + 1] = element.split(' ').map(Number);
 });
 
 for (let i = N; i > 0; i--) {
-  if (i + arr[i][0] > N + 1) {
-    temp[i] = temp[i + 1];
-  } else {
-    temp[i] = Math.max(temp[i + 1], arr[i][1] + temp[i + arr[i][0]]);
+  if (i + times[i][0] > N + 1) D[i] = D[i + 1];
+  else {
+    D[i] = Math.max(D[i + 1], times[i][1] + D[i + times[i][0]]);
   }
 }
 
-console.log(Math.max(...temp));
+console.log(Math.max(...D));
