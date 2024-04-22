@@ -17,7 +17,7 @@ function first_check(new_id){
 }
 
 function second_check(new_id){
-    let confirm_id = new_id.replace(/[^a-z0-9\-_\.]/g, ''); 
+    let confirm_id =  new_id.replaceAll(/[^a-z0-9-_.]/g, ''); 
     return confirm_id;
 }
 
