@@ -17,8 +17,10 @@ function DFS(v, dic, vowel){
     if(v.length <= 5){
         dic.push(v);
         
-        for(let i=0; i<5; i++){
+        if(v.length < 5){
+            for(let i=0; i<5; i++){
             DFS(v+vowel[i], dic, vowel);
+            }
         }
     }
 }
