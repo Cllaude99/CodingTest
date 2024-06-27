@@ -77,17 +77,11 @@ function solution(state, info) {
 
   for (let i = 0; i < Math.ceil(state.length / 20); i++) {
     if (i === Math.ceil(state.length / 20) - 1) {
-      answer.push(state.slice(20 * i));
+      answer.push(state.slice(20 * i).join(' '));
     } else {
-      answer.push(state.slice(20 * i, 20 * i + 20));
+      answer.push(state.slice(20 * i, 20 * i + 20).join(' '));
     }
   }
 
-  const result = [];
-
-  answer.forEach((a) => {
-    result.push(a.join(' '));
-  });
-
-  return result.join('\n');
+  return answer.join('\n');
 }
